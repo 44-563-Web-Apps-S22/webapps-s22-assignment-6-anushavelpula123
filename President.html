@@ -1,79 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <header>President guess by Anusha</header>
+    <head>
+        <title>Javascript Webpage</title>
+    </head>
  
 <body>
 
-<h2>Getting input with radio buttons and checkboxes</h2>
+<h2>President guess by Anusha Velpula</h2>
+<form>
+    <label for="president_name">Enter the secret president name </label>
+    <input type ="password" id="president_name" name="president_name" value="George Washington"> <br>
 
-    <form>
-        <input type="radio" id="rg1_red" name="color" value="red"   
-          checked >
-        <label for="rg1_red">Red</label></br>
-      
-        <input type="radio" id="rg1_blue" name="color" 
-           value="blue">
-        <label for="rg1_blue">Blue</label></br>
-      
-        <input type="radio" id="rg1_green" name="color"   
-           value="green">
-        <label for="rg1_green">Green</label></br>
+    <label for="guessing">Guess the president </label>
+    <input type ="text" id="guessing" name="guessing"> <br>
 
-        <input type="button" onclick="resolveRadio()" value="Get values from radio group">
-      </form>
-      
-      <form>
-        <input type="checkbox" id="cb1_cheese" name="topping1"   
-          value="cheese" checked>
-        <label for="cb1_cheese">I want cheese</label></br>
-      
-        <input type="checkbox" id="cb1_olive" name="topping2" 
-           value="olive">
-        <label for="cb1_olive">I want olives</label></br>
-      
-        <input type="checkbox" id="cb1_onion" name="topping3"   
-           value="onion" checked>
-        <label for="cb1_onion">I want onions</label></br>
-
-        <input type="button" onclick="resolveCheck()" value="Get values from check boxes">
-      </form>
-      
+    <input type="button" onclick="checkGuess()" value="Check the guess">
+</form>
 
 
-<p id="result">This text will be replaced </p>
+
+<p id="result"></p>
+<div class="container">
+    <img src= "Eagle.jpg"  id="my-image" width="100",height="100" onclick="swapImage()" alt="Eagle Images">
+</div>
 
 <script> 
-function resolveCheck() {
-    console.log("Getting input")
-    cheese = document.getElementById("cb1_cheese").checked
-    olives = document.getElementById("cb1_olive").checked
-    onions = document.getElementById("cb1_onion").checked
-    confirmed = confirm("Are these the values? "+cheese+" and "+olives+" and "+onions)
-    
+    var correct=0;
+    var wrong=0;
+function checkGuess(){
+    console.log("Getting form values")
+    secret = document.getElementById("president_name").value
+    guess = document.getElementById("guessing").value
     out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
+    if(secret == guess){
+        correct+=1;
+        alert("You got it right")
+        out.innerHTML= correct
     } else {
-        out.innerHTML = "Values were not confirmed"
+        wrong+=1;
+        alert("Wrong President")
+        out.innerHTML= wrong
     }
+    if(wrong >= 3){
+     wrongGuess();
 }
-
-function resolveRadio() {
-    console.log("Getting input")
-    redOpt = document.getElementById("rg1_red").checked
-    blueOpt = document.getElementById("rg1_blue").checked
-    greenOpt = document.getElementById("rg1_green").checked
-    confirmed = confirm("Are these the values? "+redOpt+" and "+blueOpt+" and "+greenOpt)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
 }
-
+function wrongGuess(){
+            alert("Sorry, game over.");
+        }
 </script>
+<script>
+    var useImage=1;
+    function swapImage(){
+        switch(useImage)
+        {
+            case 1:document.getElementById("my-image").src ="Lapwing.jpg";
+            useImage++;
+            break;
+            case 2:document.getElementById("my-image").src ="Vulture.jpg";
+            useImage++;
+            break;
+            case 3 :document.getElementById("my-image").src ="lago Sparrows.jpg";
+            useImage=1;
+            break;
 
+        }
+    }
+</script>
 </body>
 </html> 
